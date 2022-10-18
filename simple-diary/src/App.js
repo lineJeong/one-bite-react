@@ -32,22 +32,28 @@ function App() {
   const dataId = useRef(0);
 
   const onCreate = (author, content, emotion) => {
-    const created_data = new Date().getTime();
+    const created_date = new Date().getTime();
     const newItem = {
       author,
       content,
       emotion,
-      created_data,
-      id: dataId,
+      created_date,
+      id: dataId.current,
     };
+
     dataId.current += 1;
     setData((prev) => [newItem, ...prev]);
+  };
+
+  const onDelete = (targetId) => {
+    const newDiaryList = data.filter((it) => it.id !== targetId);
+    setData(newDiaryList);
   };
 
   return (
     <div>
       <DiaryEditor onCreate={onCreate} />
-      <DiaryList data={data} />
+      <DiaryList data={data} onDelete={onDelete} />
     </div>
   );
 }
