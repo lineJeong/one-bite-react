@@ -3,30 +3,6 @@ import DiaryEditor from "./DiaryEditor";
 import DiaryList from "./DiaryList";
 import "./App.css";
 
-// const dummyList = [
-//   {
-//     id: 1,
-//     author: "햄스",
-//     content: "하이 1",
-//     emotion: 1,
-//     created_date: new Date().getTime(),
-//   },
-//   {
-//     id: 2,
-//     author: "후후",
-//     content: "하이 2",
-//     emotion: 2,
-//     created_date: new Date().getTime(),
-//   },
-//   {
-//     id: 3,
-//     author: "가마",
-//     content: "하이 3",
-//     emotion: 3,
-//     created_date: new Date().getTime(),
-//   },
-// ];
-
 function App() {
   const [data, setData] = useState([]);
   const dataId = useRef(0);
@@ -45,15 +21,23 @@ function App() {
     setData((prev) => [newItem, ...prev]);
   };
 
-  const onDelete = (targetId) => {
+  const onRemove = (targetId) => {
     const newDiaryList = data.filter((it) => it.id !== targetId);
     setData(newDiaryList);
+  };
+
+  const onEdit = (targetId, newContent) => {
+    setData(
+      data.map((it) =>
+        it.id === targetId ? { ...it, content: newContent } : it
+      )
+    );
   };
 
   return (
     <div>
       <DiaryEditor onCreate={onCreate} />
-      <DiaryList data={data} onDelete={onDelete} />
+      <DiaryList data={data} onRemove={onRemove} onEdit={onEdit} />
     </div>
   );
 }
