@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
+
 import DiaryItem from "./DiaryItem";
 import MyButton from "./MyButton";
 
@@ -44,9 +45,9 @@ function DiaryList({ diaryList }) {
   const getProcessedDiaryList = () => {
     const filterCallBack = (item) => {
       if (filter === "good") {
-        return parseInt(item.emotion) > 3;
-      } else {
         return parseInt(item.emotion) <= 3;
+      } else {
+        return parseInt(item.emotion) > 3;
       }
     };
 

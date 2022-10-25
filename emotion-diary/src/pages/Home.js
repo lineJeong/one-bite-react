@@ -1,8 +1,8 @@
 import { useContext, useEffect, useState } from "react";
 import { DiaryStaticContext } from "../App";
 
-import MyHeader from "./../components/MyHeader";
-import MyButton from "./../components/MyButton";
+import MyHeader from "../components/MyHeader";
+import MyButton from "../components/MyButton";
 import DiaryList from "../components/DiaryList";
 
 function Home() {
